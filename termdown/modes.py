@@ -38,6 +38,8 @@ def countdown(ui, args):
                 # If seconds_left is zero or negative, immediately break to handle the
                 # "finished" state. This prevents displaying "0" for an entire second
                 # while waiting for the next tick.
+                if not args.notification == None:
+                    os.system(f'notify-send "{args.notification}"')                    
                 break
 
             if args.alt_format:
