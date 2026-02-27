@@ -1,4 +1,6 @@
 import os
+import asyncio
+from desktop_notifier import DesktopNotifier
 from curses import beep
 from datetime import datetime, timedelta, timezone
 from math import ceil
@@ -24,6 +26,9 @@ from .utils import (
     parse_timestr,
 )
 
+async def notify(message):
+    notifier = DesktopNotifier()
+    await notifier.send(title="Termdown", message=message)
 
 def countdown(ui, args):
     target_time = parse_timestr(args.timespec)
@@ -39,7 +44,7 @@ def countdown(ui, args):
                 # "finished" state. This prevents displaying "0" for an entire second
                 # while waiting for the next tick.
                 if not args.notification == None:
-                    os.system(f'notify-send "{args.notification}"')                    
+                    asyncio.run(notify(args.notification))
                 break
 
             if args.alt_format:
