@@ -167,7 +167,7 @@ parser.add_argument(
     "-n",
     "--notification",
     metavar="NOTIFICATION_TEXT",
-    help="Sends notification when the countdown stops (Linux only for now)",
+    help="Sends notification when the countdown stops (Not avalible in TTY)",
 )
 parser.add_argument(
     "--no-text-magic",
